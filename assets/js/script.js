@@ -1,17 +1,18 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
+
 $(function () {
+  // add click event listener to save button and save to local storage
     $('.saveBtn').on('click', function() {
       var time = $(this).siblings('.description').data('time');
       var event = $(this).siblings('.description').val();
       localStorage.setItem('event-' + time, event);
     });
-    // TODO: Add code to apply the past, present, or future class to each time
-    // block by comparing the id to the current hour. 
+  // call colorTime function
     colorTime();
+  // function to change color of time blocks
     function colorTime() {
+      // get current hour
       var currentTime = dayjs().hour();
+      // loop to check time and add appropriate class
       $('.description').each(function() {
         var time = $(this).data('time');
         if (time < currentTime) {
@@ -24,16 +25,14 @@ $(function () {
       });
     }
       entryfield()
-    // TODO: Add code to get any user input that was saved in localStorage and set
-    // the values of the corresponding textarea elements.
+//  function to display entry field and retrieve from local storage
       function entryfield() {
         $('.description').each(function() {
           var time = $(this).data('time');
           var event = localStorage.getItem('event-' + time);
           $(this).val(event);
         });
-    // TODO: Add code to display the current date in the header of the page.
-    // Display current date
+// display current date in header using dayjs
     var displayDate = dayjs().format('dddd, MMMM D, YYYY');
     $('#currentDay').text(displayDate);
   };
