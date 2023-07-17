@@ -12,7 +12,7 @@ $(function () {
   function colorTime() {
     // get current hour
     var currentTime = dayjs().hour();
-    // loop to check time and add appropriate class
+    // loop to check time and add past, present, future class
     $('.description').each(function () {
       var time = $(this).data('time');
       if (time < currentTime) {
